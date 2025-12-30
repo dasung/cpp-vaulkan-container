@@ -1,0 +1,21 @@
+{
+    "name": "DevContainer C++ MinGW Example",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "runArgs": [
+        "--userns=keep-id",
+        "--privileged"
+    ],
+    "containerUser": "vscode",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.cmake-tools"
+            ]
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/post-create.sh"
+}
