@@ -1,4 +1,4 @@
-# C++ Hello World app in a Dev Container
+# C++ Hello Vulkan in a Dev Container
 
 This repository contains a development environment setup for C++ projects using VS Code Dev Containers.
 
@@ -157,4 +157,5 @@ To run the hello world, use:
   * Using post-create.sh script
   * Using devcontainer.json "postCreateCommand" (Run Time - pip, npm, dotnet)
   * Using Dockerfile RUN commands (Build Time - OS, pip, compilers)
+
 
