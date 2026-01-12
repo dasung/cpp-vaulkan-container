@@ -1,52 +1,42 @@
-# C++ Hello World app in a Dev Container
+# C++ Vulkan Development Container
 
-This repository contains a development environment setup for C++ projects using VS Code Dev Containers.
+Containerized C++ development environment with cross-compilation support and graphics programming dependencies.
 
 ## Features
 
-- Develop in a consistent environment using Dev Containers.
-- Basic Hello World C++ application.
-- The application supported the following target platforms.
-    - Compiled for Windows using the MinGW toolchain.
-    - Compiled for Native Linux using the g++ toolchain.
-- installed vulkan sdk and glfw3 for future graphics programming.
+- Cross-platform builds: MinGW (Windows) and g++ (Linux)
+- Pre-configured Vulkan SDK and GLFW3
+- Consistent development environment via Dev Containers
 
-## Pre-requisites
+## Prerequisites
 
-Make sure you follow the guide in the root of this project
+- Docker/Podman with WSL2 (Windows) or native Linux
+- VS Code with Dev Containers extension
+- Access credentials for BAMP registry (BAMP_USER, BAMP_TOKEN)
 
-## Dev Container Configuration
-
-The Dev Container is configured using the [.devcontainer]folder, which contains:
-
-- `devcontainer.json`: Configuration file for the Dev Container.
-- `Dockerfile`: Defines the Docker image used for the Dev Container.
-
-## How to Run the Hello World App
-
-To run the hello world, use:
+## Build & Run
 
 ```sh
     mkdir -p build && cd build
-    # For Windows
+    
+    # Windows target (MinGW)
     cmake -DCMAKE_TOOLCHAIN_FILE=../mingw-toolchain.cmake ..
     make
     ./hello-world-windows.exe
 
-    # For Linux
+
+    # Linux target (native)
     cmake ..
     make
     ./hello-world-linux
-
 ```
 
-# Additional Information
-- Dev Containers are Linux containers, a configuration that works everywhere windows/mac or Linux.
-- The Dev Container ensures a consistent development environment across different machines.
-- You can customize the Dev Container by modifying the `devcontainer.json` and `Dockerfile`.
+## Container Architecture
 
 ### What is a Dev Container?
   * A Dev Container (Development Container) is a fully-configured, containerized development environment that runs inside a **Docker/Podman** container.
+  * Dev Containers are Linux containers.
+  * You can customize the Dev Container by modifying the `devcontainer.json` and `Dockerfile`.
 
 #### .devcontainer folder
 
@@ -84,10 +74,10 @@ To run the hello world, use:
     Linux Kernel (WSL2 in your case)
     ```
 
-#### Podman
-  * This is an <span style="color:red">alternative to Docker</span>.
-  * Docker runs a central deamon process (dockerd) with root privileges.
-  * Podman is daemonless and can run rootless containers - simple architecture.
+**Podman vs Docker:**
+- Podman: Daemonless, rootless containers. It's an <span style="color:red">alternative to Docker</span>.
+- Docker: Central daemon (dockerd) with elevated privileges
+- Both are compatible with this Dev Container setup
 
 #### Why WSL2?
   * Dev Containers run on Linux: Dev Containers are Linux-based containers.
@@ -146,7 +136,6 @@ To run the hello world, use:
  - ✅ Ready to run C++ code with g++ and MinGW
 
 
-
 #### Why BAMS?
   - This is a custom, private base image hosted on kings's organizational software factory
   - It's NOT a public image from Docker Hub
@@ -157,4 +146,3 @@ To run the hello world, use:
   * Using post-create.sh script
   * Using devcontainer.json "postCreateCommand" (Run Time - pip, npm, dotnet)
   * Using Dockerfile RUN commands (Build Time - OS, pip, compilers)
-
